@@ -1,9 +1,15 @@
 import { createRouter as createTanStackRouter } from '@tanstack/react-router'
 import { routeTree } from './routeTree.gen'
 
-const SUBDOMAINS = ['teams', 'competitions', 'admin', 'tickets', 'players'] as const
+const SUBDOMAINS = [
+  'teams',
+  'competitions',
+  'admin',
+  'tickets',
+  'players',
+] as const
 const SUBDOMAIN_SET = new Set<string>(SUBDOMAINS)
-const PRODUCTION_DOMAIN = 'tisini.africa'
+const PRODUCTION_DOMAIN = 'tms-new.vercel.app'
 
 function getMappedSubdomain(hostname: string) {
   const normalizedHost = hostname.toLowerCase()
@@ -17,13 +23,13 @@ function getMappedSubdomain(hostname: string) {
   }
 
   if (normalizedHost.endsWith(`.${PRODUCTION_DOMAIN}`)) {
-    const leftPart = normalizedHost.slice(0, -(`.${PRODUCTION_DOMAIN}`.length))
+    const leftPart = normalizedHost.slice(0, -`.${PRODUCTION_DOMAIN}`.length)
     if (leftPart.includes('.')) return null
     return SUBDOMAIN_SET.has(leftPart) ? leftPart : null
   }
 
   if (normalizedHost.endsWith('.localhost')) {
-    const leftPart = normalizedHost.slice(0, -('.localhost'.length))
+    const leftPart = normalizedHost.slice(0, -'.localhost'.length)
     if (!leftPart || leftPart.includes('.')) return null
     return SUBDOMAIN_SET.has(leftPart) ? leftPart : null
   }
@@ -62,7 +68,8 @@ export function getRouter() {
         const prefix = `/${subdomain}`
         if (startsWithPrefix(url.pathname, prefix)) return url
 
-        url.pathname = url.pathname === '/' ? prefix : `${prefix}${url.pathname}`
+        url.pathname =
+          url.pathname === '/' ? prefix : `${prefix}${url.pathname}`
         return url
       },
       output: ({ url }) => {
