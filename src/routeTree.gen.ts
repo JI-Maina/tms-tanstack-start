@@ -9,82 +9,115 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as AboutRouteImport } from './routes/about'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as TicketsIndexRouteImport } from './routes/tickets/index'
-import { Route as TeamsIndexRouteImport } from './routes/teams/index'
-import { Route as PlayersIndexRouteImport } from './routes/players/index'
-import { Route as CompetitionsIndexRouteImport } from './routes/competitions/index'
-import { Route as AdminIndexRouteImport } from './routes/admin/index'
+import { Route as DashboardRouteRouteImport } from './routes/_dashboard/route'
+import { Route as AuthRouteRouteImport } from './routes/_auth/route'
+import { Route as LandingIndexRouteImport } from './routes/_landing/index'
+import { Route as LandingAboutRouteImport } from './routes/_landing/about'
+import { Route as AuthRegisterRouteImport } from './routes/_auth/register'
+import { Route as AuthLoginRouteImport } from './routes/_auth/login'
+import { Route as DashboardTicketsIndexRouteImport } from './routes/_dashboard/tickets/index'
+import { Route as DashboardTeamsIndexRouteImport } from './routes/_dashboard/teams/index'
+import { Route as DashboardPlayersIndexRouteImport } from './routes/_dashboard/players/index'
+import { Route as DashboardCompetitionsIndexRouteImport } from './routes/_dashboard/competitions/index'
+import { Route as DashboardAdminIndexRouteImport } from './routes/_dashboard/admin/index'
 
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
+const DashboardRouteRoute = DashboardRouteRouteImport.update({
+  id: '/_dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
+const AuthRouteRoute = AuthRouteRouteImport.update({
+  id: '/_auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LandingIndexRoute = LandingIndexRouteImport.update({
+  id: '/_landing/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const TicketsIndexRoute = TicketsIndexRouteImport.update({
+const LandingAboutRoute = LandingAboutRouteImport.update({
+  id: '/_landing/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRegisterRoute = AuthRegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => AuthRouteRoute,
+} as any)
+const AuthLoginRoute = AuthLoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => AuthRouteRoute,
+} as any)
+const DashboardTicketsIndexRoute = DashboardTicketsIndexRouteImport.update({
   id: '/tickets/',
   path: '/tickets/',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => DashboardRouteRoute,
 } as any)
-const TeamsIndexRoute = TeamsIndexRouteImport.update({
+const DashboardTeamsIndexRoute = DashboardTeamsIndexRouteImport.update({
   id: '/teams/',
   path: '/teams/',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => DashboardRouteRoute,
 } as any)
-const PlayersIndexRoute = PlayersIndexRouteImport.update({
+const DashboardPlayersIndexRoute = DashboardPlayersIndexRouteImport.update({
   id: '/players/',
   path: '/players/',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => DashboardRouteRoute,
 } as any)
-const CompetitionsIndexRoute = CompetitionsIndexRouteImport.update({
-  id: '/competitions/',
-  path: '/competitions/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminIndexRoute = AdminIndexRouteImport.update({
+const DashboardCompetitionsIndexRoute =
+  DashboardCompetitionsIndexRouteImport.update({
+    id: '/competitions/',
+    path: '/competitions/',
+    getParentRoute: () => DashboardRouteRoute,
+  } as any)
+const DashboardAdminIndexRoute = DashboardAdminIndexRouteImport.update({
   id: '/admin/',
   path: '/admin/',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => DashboardRouteRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/admin/': typeof AdminIndexRoute
-  '/competitions/': typeof CompetitionsIndexRoute
-  '/players/': typeof PlayersIndexRoute
-  '/teams/': typeof TeamsIndexRoute
-  '/tickets/': typeof TicketsIndexRoute
+  '/': typeof LandingIndexRoute
+  '/login': typeof AuthLoginRoute
+  '/register': typeof AuthRegisterRoute
+  '/about': typeof LandingAboutRoute
+  '/admin/': typeof DashboardAdminIndexRoute
+  '/competitions/': typeof DashboardCompetitionsIndexRoute
+  '/players/': typeof DashboardPlayersIndexRoute
+  '/teams/': typeof DashboardTeamsIndexRoute
+  '/tickets/': typeof DashboardTicketsIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/admin': typeof AdminIndexRoute
-  '/competitions': typeof CompetitionsIndexRoute
-  '/players': typeof PlayersIndexRoute
-  '/teams': typeof TeamsIndexRoute
-  '/tickets': typeof TicketsIndexRoute
+  '/': typeof LandingIndexRoute
+  '/login': typeof AuthLoginRoute
+  '/register': typeof AuthRegisterRoute
+  '/about': typeof LandingAboutRoute
+  '/admin': typeof DashboardAdminIndexRoute
+  '/competitions': typeof DashboardCompetitionsIndexRoute
+  '/players': typeof DashboardPlayersIndexRoute
+  '/teams': typeof DashboardTeamsIndexRoute
+  '/tickets': typeof DashboardTicketsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/admin/': typeof AdminIndexRoute
-  '/competitions/': typeof CompetitionsIndexRoute
-  '/players/': typeof PlayersIndexRoute
-  '/teams/': typeof TeamsIndexRoute
-  '/tickets/': typeof TicketsIndexRoute
+  '/_auth': typeof AuthRouteRouteWithChildren
+  '/_dashboard': typeof DashboardRouteRouteWithChildren
+  '/_auth/login': typeof AuthLoginRoute
+  '/_auth/register': typeof AuthRegisterRoute
+  '/_landing/about': typeof LandingAboutRoute
+  '/_landing/': typeof LandingIndexRoute
+  '/_dashboard/admin/': typeof DashboardAdminIndexRoute
+  '/_dashboard/competitions/': typeof DashboardCompetitionsIndexRoute
+  '/_dashboard/players/': typeof DashboardPlayersIndexRoute
+  '/_dashboard/teams/': typeof DashboardTeamsIndexRoute
+  '/_dashboard/tickets/': typeof DashboardTicketsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/login'
+    | '/register'
     | '/about'
     | '/admin/'
     | '/competitions/'
@@ -94,6 +127,8 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/login'
+    | '/register'
     | '/about'
     | '/admin'
     | '/competitions'
@@ -102,87 +137,147 @@ export interface FileRouteTypes {
     | '/tickets'
   id:
     | '__root__'
-    | '/'
-    | '/about'
-    | '/admin/'
-    | '/competitions/'
-    | '/players/'
-    | '/teams/'
-    | '/tickets/'
+    | '/_auth'
+    | '/_dashboard'
+    | '/_auth/login'
+    | '/_auth/register'
+    | '/_landing/about'
+    | '/_landing/'
+    | '/_dashboard/admin/'
+    | '/_dashboard/competitions/'
+    | '/_dashboard/players/'
+    | '/_dashboard/teams/'
+    | '/_dashboard/tickets/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
-  AdminIndexRoute: typeof AdminIndexRoute
-  CompetitionsIndexRoute: typeof CompetitionsIndexRoute
-  PlayersIndexRoute: typeof PlayersIndexRoute
-  TeamsIndexRoute: typeof TeamsIndexRoute
-  TicketsIndexRoute: typeof TicketsIndexRoute
+  AuthRouteRoute: typeof AuthRouteRouteWithChildren
+  DashboardRouteRoute: typeof DashboardRouteRouteWithChildren
+  LandingAboutRoute: typeof LandingAboutRoute
+  LandingIndexRoute: typeof LandingIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
+    '/_dashboard': {
+      id: '/_dashboard'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof DashboardRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
+    '/_auth': {
+      id: '/_auth'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_landing/': {
+      id: '/_landing/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+      preLoaderRoute: typeof LandingIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/tickets/': {
-      id: '/tickets/'
+    '/_landing/about': {
+      id: '/_landing/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof LandingAboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_auth/register': {
+      id: '/_auth/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof AuthRegisterRouteImport
+      parentRoute: typeof AuthRouteRoute
+    }
+    '/_auth/login': {
+      id: '/_auth/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof AuthLoginRouteImport
+      parentRoute: typeof AuthRouteRoute
+    }
+    '/_dashboard/tickets/': {
+      id: '/_dashboard/tickets/'
       path: '/tickets'
       fullPath: '/tickets/'
-      preLoaderRoute: typeof TicketsIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof DashboardTicketsIndexRouteImport
+      parentRoute: typeof DashboardRouteRoute
     }
-    '/teams/': {
-      id: '/teams/'
+    '/_dashboard/teams/': {
+      id: '/_dashboard/teams/'
       path: '/teams'
       fullPath: '/teams/'
-      preLoaderRoute: typeof TeamsIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof DashboardTeamsIndexRouteImport
+      parentRoute: typeof DashboardRouteRoute
     }
-    '/players/': {
-      id: '/players/'
+    '/_dashboard/players/': {
+      id: '/_dashboard/players/'
       path: '/players'
       fullPath: '/players/'
-      preLoaderRoute: typeof PlayersIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof DashboardPlayersIndexRouteImport
+      parentRoute: typeof DashboardRouteRoute
     }
-    '/competitions/': {
-      id: '/competitions/'
+    '/_dashboard/competitions/': {
+      id: '/_dashboard/competitions/'
       path: '/competitions'
       fullPath: '/competitions/'
-      preLoaderRoute: typeof CompetitionsIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof DashboardCompetitionsIndexRouteImport
+      parentRoute: typeof DashboardRouteRoute
     }
-    '/admin/': {
-      id: '/admin/'
+    '/_dashboard/admin/': {
+      id: '/_dashboard/admin/'
       path: '/admin'
       fullPath: '/admin/'
-      preLoaderRoute: typeof AdminIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof DashboardAdminIndexRouteImport
+      parentRoute: typeof DashboardRouteRoute
     }
   }
 }
 
+interface AuthRouteRouteChildren {
+  AuthLoginRoute: typeof AuthLoginRoute
+  AuthRegisterRoute: typeof AuthRegisterRoute
+}
+
+const AuthRouteRouteChildren: AuthRouteRouteChildren = {
+  AuthLoginRoute: AuthLoginRoute,
+  AuthRegisterRoute: AuthRegisterRoute,
+}
+
+const AuthRouteRouteWithChildren = AuthRouteRoute._addFileChildren(
+  AuthRouteRouteChildren,
+)
+
+interface DashboardRouteRouteChildren {
+  DashboardAdminIndexRoute: typeof DashboardAdminIndexRoute
+  DashboardCompetitionsIndexRoute: typeof DashboardCompetitionsIndexRoute
+  DashboardPlayersIndexRoute: typeof DashboardPlayersIndexRoute
+  DashboardTeamsIndexRoute: typeof DashboardTeamsIndexRoute
+  DashboardTicketsIndexRoute: typeof DashboardTicketsIndexRoute
+}
+
+const DashboardRouteRouteChildren: DashboardRouteRouteChildren = {
+  DashboardAdminIndexRoute: DashboardAdminIndexRoute,
+  DashboardCompetitionsIndexRoute: DashboardCompetitionsIndexRoute,
+  DashboardPlayersIndexRoute: DashboardPlayersIndexRoute,
+  DashboardTeamsIndexRoute: DashboardTeamsIndexRoute,
+  DashboardTicketsIndexRoute: DashboardTicketsIndexRoute,
+}
+
+const DashboardRouteRouteWithChildren = DashboardRouteRoute._addFileChildren(
+  DashboardRouteRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
-  AdminIndexRoute: AdminIndexRoute,
-  CompetitionsIndexRoute: CompetitionsIndexRoute,
-  PlayersIndexRoute: PlayersIndexRoute,
-  TeamsIndexRoute: TeamsIndexRoute,
-  TicketsIndexRoute: TicketsIndexRoute,
+  AuthRouteRoute: AuthRouteRouteWithChildren,
+  DashboardRouteRoute: DashboardRouteRouteWithChildren,
+  LandingAboutRoute: LandingAboutRoute,
+  LandingIndexRoute: LandingIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

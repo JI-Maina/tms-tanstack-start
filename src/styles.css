@@ -177,4 +177,24 @@
   html {
     @apply font-sans;
   }
+
+  .auth-pitch-lines {
+    background-image:
+      linear-gradient(to bottom, transparent 24%, color-mix(in oklch, var(--border) 70%, transparent) 24%, color-mix(in oklch, var(--border) 70%, transparent) 24.15%, transparent 24.15%),
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 79px,
+        color-mix(in oklch, var(--border) 55%, transparent) 79px,
+        color-mix(in oklch, var(--border) 55%, transparent) 80px
+      ),
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 59px,
+        color-mix(in oklch, var(--border) 40%, transparent) 59px,
+        color-mix(in oklch, var(--border) 40%, transparent) 60px
+      );
+    mask-image: linear-gradient(to bottom, transparent, black 18%, black 88%, transparent);
+  }
 }
