@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useForm } from '@tanstack/react-form'
 import { Loader2 } from 'lucide-react'
-import { createFileRoute, useRouter } from '@tanstack/react-router'
+import { createFileRoute, useNavigate } from '@tanstack/react-router'
 
 import { loginFn } from '#/data/auth'
 import { loginSchema } from '#/lib/schemas'
@@ -29,7 +29,7 @@ export const Route = createFileRoute('/_auth/login')({
 function RouteComponent() {
   const [submitError, setSubmitError] = useState<string | null>(null)
 
-  const router = useRouter()
+  const navigate = useNavigate()
 
   const form = useForm({
     validators: {
@@ -45,7 +45,7 @@ function RouteComponent() {
 
       try {
         await loginFn({ data: value })
-        router.navigate({ to: '/admin', replace: true })
+        await navigate({ to: '/admin', replace: true })
       } catch (error) {
         const message =
           error instanceof Error ? error.message : 'An unknown error occurred'
