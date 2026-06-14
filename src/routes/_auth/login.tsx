@@ -1,10 +1,16 @@
+import { z } from 'zod'
 import { useState } from 'react'
-import { useForm } from '@tanstack/react-form'
 import { Loader2 } from 'lucide-react'
-import { createFileRoute, useNavigate } from '@tanstack/react-router'
+import { useForm } from '@tanstack/react-form'
+import {
+  isRedirect,
+  useNavigate,
+  createFileRoute,
+} from '@tanstack/react-router'
 
 import { loginFn } from '#/data/auth'
 import { loginSchema } from '#/lib/schemas'
+import { safeInternalPath } from '#/lib/utils'
 import { Button } from '#/components/ui/button'
 import { InputField } from '#/components/general/forms/input-field'
 import {
@@ -23,6 +29,9 @@ import {
 } from '#/components/ui/field'
 
 export const Route = createFileRoute('/_auth/login')({
+  validateSearch: z.object({
+    redirect: z.string().optional(),
+  }),
   component: RouteComponent,
 })
 
@@ -30,6 +39,8 @@ function RouteComponent() {
   const [submitError, setSubmitError] = useState<string | null>(null)
 
   const navigate = useNavigate()
+  const { redirect } = Route.useSearch()
+  const redirectTo = safeInternalPath(redirect)
 
   const form = useForm({
     validators: {
@@ -45,8 +56,10 @@ function RouteComponent() {
 
       try {
         await loginFn({ data: value })
-        await navigate({ to: '/admin', replace: true })
+        await navigate({ to: redirectTo, replace: true })
       } catch (error) {
+        if (isRedirect(error)) throw error
+
         const message =
           error instanceof Error ? error.message : 'An unknown error occurred'
         setSubmitError(message)

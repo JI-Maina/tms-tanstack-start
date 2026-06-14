@@ -14,13 +14,11 @@ export const loginFn = createServerFn({ method: 'POST' })
 
     const res = await fetch(`${url}/auth/login`, {
       method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         email_or_phone_number: data.phone,
         password: data.password,
       }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
     })
 
     if (!res.ok) {
@@ -62,4 +60,11 @@ export const getUserFn = createServerFn({ method: 'GET' }).handler(async () => {
   }
 
   return session.data.user
+})
+
+// logout
+export const logoutFn = createServerFn({ method: 'POST' }).handler(async () => {
+  const session = await useAppSession()
+  await session.clear()
+  return { success: true }
 })

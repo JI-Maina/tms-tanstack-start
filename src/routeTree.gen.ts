@@ -15,11 +15,18 @@ import { Route as LandingIndexRouteImport } from './routes/_landing/index'
 import { Route as LandingAboutRouteImport } from './routes/_landing/about'
 import { Route as AuthRegisterRouteImport } from './routes/_auth/register'
 import { Route as AuthLoginRouteImport } from './routes/_auth/login'
+import { Route as DashboardWalletIndexRouteImport } from './routes/_dashboard/wallet/index'
 import { Route as DashboardTicketsIndexRouteImport } from './routes/_dashboard/tickets/index'
 import { Route as DashboardTeamsIndexRouteImport } from './routes/_dashboard/teams/index'
+import { Route as DashboardSuperAgentIndexRouteImport } from './routes/_dashboard/super-agent/index'
 import { Route as DashboardPlayersIndexRouteImport } from './routes/_dashboard/players/index'
 import { Route as DashboardCompetitionsIndexRouteImport } from './routes/_dashboard/competitions/index'
+import { Route as DashboardAgentIndexRouteImport } from './routes/_dashboard/agent/index'
 import { Route as DashboardAdminIndexRouteImport } from './routes/_dashboard/admin/index'
+import { Route as DashboardAgentFixturesRouteImport } from './routes/_dashboard/agent/fixtures'
+import { Route as DashboardSuperAgentTeamsIndexRouteImport } from './routes/_dashboard/super-agent/teams/index'
+import { Route as DashboardSuperAgentPlayersIndexRouteImport } from './routes/_dashboard/super-agent/players/index'
+import { Route as DashboardSuperAgentCompetitionsIndexRouteImport } from './routes/_dashboard/super-agent/competitions/index'
 
 const DashboardRouteRoute = DashboardRouteRouteImport.update({
   id: '/_dashboard',
@@ -49,6 +56,11 @@ const AuthLoginRoute = AuthLoginRouteImport.update({
   path: '/login',
   getParentRoute: () => AuthRouteRoute,
 } as any)
+const DashboardWalletIndexRoute = DashboardWalletIndexRouteImport.update({
+  id: '/wallet/',
+  path: '/wallet/',
+  getParentRoute: () => DashboardRouteRoute,
+} as any)
 const DashboardTicketsIndexRoute = DashboardTicketsIndexRouteImport.update({
   id: '/tickets/',
   path: '/tickets/',
@@ -59,6 +71,12 @@ const DashboardTeamsIndexRoute = DashboardTeamsIndexRouteImport.update({
   path: '/teams/',
   getParentRoute: () => DashboardRouteRoute,
 } as any)
+const DashboardSuperAgentIndexRoute =
+  DashboardSuperAgentIndexRouteImport.update({
+    id: '/super-agent/',
+    path: '/super-agent/',
+    getParentRoute: () => DashboardRouteRoute,
+  } as any)
 const DashboardPlayersIndexRoute = DashboardPlayersIndexRouteImport.update({
   id: '/players/',
   path: '/players/',
@@ -70,33 +88,75 @@ const DashboardCompetitionsIndexRoute =
     path: '/competitions/',
     getParentRoute: () => DashboardRouteRoute,
   } as any)
+const DashboardAgentIndexRoute = DashboardAgentIndexRouteImport.update({
+  id: '/agent/',
+  path: '/agent/',
+  getParentRoute: () => DashboardRouteRoute,
+} as any)
 const DashboardAdminIndexRoute = DashboardAdminIndexRouteImport.update({
   id: '/admin/',
   path: '/admin/',
   getParentRoute: () => DashboardRouteRoute,
 } as any)
+const DashboardAgentFixturesRoute = DashboardAgentFixturesRouteImport.update({
+  id: '/agent/fixtures',
+  path: '/agent/fixtures',
+  getParentRoute: () => DashboardRouteRoute,
+} as any)
+const DashboardSuperAgentTeamsIndexRoute =
+  DashboardSuperAgentTeamsIndexRouteImport.update({
+    id: '/super-agent/teams/',
+    path: '/super-agent/teams/',
+    getParentRoute: () => DashboardRouteRoute,
+  } as any)
+const DashboardSuperAgentPlayersIndexRoute =
+  DashboardSuperAgentPlayersIndexRouteImport.update({
+    id: '/super-agent/players/',
+    path: '/super-agent/players/',
+    getParentRoute: () => DashboardRouteRoute,
+  } as any)
+const DashboardSuperAgentCompetitionsIndexRoute =
+  DashboardSuperAgentCompetitionsIndexRouteImport.update({
+    id: '/super-agent/competitions/',
+    path: '/super-agent/competitions/',
+    getParentRoute: () => DashboardRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof LandingIndexRoute
   '/login': typeof AuthLoginRoute
   '/register': typeof AuthRegisterRoute
   '/about': typeof LandingAboutRoute
+  '/agent/fixtures': typeof DashboardAgentFixturesRoute
   '/admin/': typeof DashboardAdminIndexRoute
+  '/agent/': typeof DashboardAgentIndexRoute
   '/competitions/': typeof DashboardCompetitionsIndexRoute
   '/players/': typeof DashboardPlayersIndexRoute
+  '/super-agent/': typeof DashboardSuperAgentIndexRoute
   '/teams/': typeof DashboardTeamsIndexRoute
   '/tickets/': typeof DashboardTicketsIndexRoute
+  '/wallet/': typeof DashboardWalletIndexRoute
+  '/super-agent/competitions/': typeof DashboardSuperAgentCompetitionsIndexRoute
+  '/super-agent/players/': typeof DashboardSuperAgentPlayersIndexRoute
+  '/super-agent/teams/': typeof DashboardSuperAgentTeamsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof LandingIndexRoute
   '/login': typeof AuthLoginRoute
   '/register': typeof AuthRegisterRoute
   '/about': typeof LandingAboutRoute
+  '/agent/fixtures': typeof DashboardAgentFixturesRoute
   '/admin': typeof DashboardAdminIndexRoute
+  '/agent': typeof DashboardAgentIndexRoute
   '/competitions': typeof DashboardCompetitionsIndexRoute
   '/players': typeof DashboardPlayersIndexRoute
+  '/super-agent': typeof DashboardSuperAgentIndexRoute
   '/teams': typeof DashboardTeamsIndexRoute
   '/tickets': typeof DashboardTicketsIndexRoute
+  '/wallet': typeof DashboardWalletIndexRoute
+  '/super-agent/competitions': typeof DashboardSuperAgentCompetitionsIndexRoute
+  '/super-agent/players': typeof DashboardSuperAgentPlayersIndexRoute
+  '/super-agent/teams': typeof DashboardSuperAgentTeamsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -106,11 +166,18 @@ export interface FileRoutesById {
   '/_auth/register': typeof AuthRegisterRoute
   '/_landing/about': typeof LandingAboutRoute
   '/_landing/': typeof LandingIndexRoute
+  '/_dashboard/agent/fixtures': typeof DashboardAgentFixturesRoute
   '/_dashboard/admin/': typeof DashboardAdminIndexRoute
+  '/_dashboard/agent/': typeof DashboardAgentIndexRoute
   '/_dashboard/competitions/': typeof DashboardCompetitionsIndexRoute
   '/_dashboard/players/': typeof DashboardPlayersIndexRoute
+  '/_dashboard/super-agent/': typeof DashboardSuperAgentIndexRoute
   '/_dashboard/teams/': typeof DashboardTeamsIndexRoute
   '/_dashboard/tickets/': typeof DashboardTicketsIndexRoute
+  '/_dashboard/wallet/': typeof DashboardWalletIndexRoute
+  '/_dashboard/super-agent/competitions/': typeof DashboardSuperAgentCompetitionsIndexRoute
+  '/_dashboard/super-agent/players/': typeof DashboardSuperAgentPlayersIndexRoute
+  '/_dashboard/super-agent/teams/': typeof DashboardSuperAgentTeamsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -119,22 +186,36 @@ export interface FileRouteTypes {
     | '/login'
     | '/register'
     | '/about'
+    | '/agent/fixtures'
     | '/admin/'
+    | '/agent/'
     | '/competitions/'
     | '/players/'
+    | '/super-agent/'
     | '/teams/'
     | '/tickets/'
+    | '/wallet/'
+    | '/super-agent/competitions/'
+    | '/super-agent/players/'
+    | '/super-agent/teams/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/login'
     | '/register'
     | '/about'
+    | '/agent/fixtures'
     | '/admin'
+    | '/agent'
     | '/competitions'
     | '/players'
+    | '/super-agent'
     | '/teams'
     | '/tickets'
+    | '/wallet'
+    | '/super-agent/competitions'
+    | '/super-agent/players'
+    | '/super-agent/teams'
   id:
     | '__root__'
     | '/_auth'
@@ -143,11 +224,18 @@ export interface FileRouteTypes {
     | '/_auth/register'
     | '/_landing/about'
     | '/_landing/'
+    | '/_dashboard/agent/fixtures'
     | '/_dashboard/admin/'
+    | '/_dashboard/agent/'
     | '/_dashboard/competitions/'
     | '/_dashboard/players/'
+    | '/_dashboard/super-agent/'
     | '/_dashboard/teams/'
     | '/_dashboard/tickets/'
+    | '/_dashboard/wallet/'
+    | '/_dashboard/super-agent/competitions/'
+    | '/_dashboard/super-agent/players/'
+    | '/_dashboard/super-agent/teams/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -201,6 +289,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthLoginRouteImport
       parentRoute: typeof AuthRouteRoute
     }
+    '/_dashboard/wallet/': {
+      id: '/_dashboard/wallet/'
+      path: '/wallet'
+      fullPath: '/wallet/'
+      preLoaderRoute: typeof DashboardWalletIndexRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
     '/_dashboard/tickets/': {
       id: '/_dashboard/tickets/'
       path: '/tickets'
@@ -213,6 +308,13 @@ declare module '@tanstack/react-router' {
       path: '/teams'
       fullPath: '/teams/'
       preLoaderRoute: typeof DashboardTeamsIndexRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
+    '/_dashboard/super-agent/': {
+      id: '/_dashboard/super-agent/'
+      path: '/super-agent'
+      fullPath: '/super-agent/'
+      preLoaderRoute: typeof DashboardSuperAgentIndexRouteImport
       parentRoute: typeof DashboardRouteRoute
     }
     '/_dashboard/players/': {
@@ -229,11 +331,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardCompetitionsIndexRouteImport
       parentRoute: typeof DashboardRouteRoute
     }
+    '/_dashboard/agent/': {
+      id: '/_dashboard/agent/'
+      path: '/agent'
+      fullPath: '/agent/'
+      preLoaderRoute: typeof DashboardAgentIndexRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
     '/_dashboard/admin/': {
       id: '/_dashboard/admin/'
       path: '/admin'
       fullPath: '/admin/'
       preLoaderRoute: typeof DashboardAdminIndexRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
+    '/_dashboard/agent/fixtures': {
+      id: '/_dashboard/agent/fixtures'
+      path: '/agent/fixtures'
+      fullPath: '/agent/fixtures'
+      preLoaderRoute: typeof DashboardAgentFixturesRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
+    '/_dashboard/super-agent/teams/': {
+      id: '/_dashboard/super-agent/teams/'
+      path: '/super-agent/teams'
+      fullPath: '/super-agent/teams/'
+      preLoaderRoute: typeof DashboardSuperAgentTeamsIndexRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
+    '/_dashboard/super-agent/players/': {
+      id: '/_dashboard/super-agent/players/'
+      path: '/super-agent/players'
+      fullPath: '/super-agent/players/'
+      preLoaderRoute: typeof DashboardSuperAgentPlayersIndexRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
+    '/_dashboard/super-agent/competitions/': {
+      id: '/_dashboard/super-agent/competitions/'
+      path: '/super-agent/competitions'
+      fullPath: '/super-agent/competitions/'
+      preLoaderRoute: typeof DashboardSuperAgentCompetitionsIndexRouteImport
       parentRoute: typeof DashboardRouteRoute
     }
   }
@@ -254,19 +391,34 @@ const AuthRouteRouteWithChildren = AuthRouteRoute._addFileChildren(
 )
 
 interface DashboardRouteRouteChildren {
+  DashboardAgentFixturesRoute: typeof DashboardAgentFixturesRoute
   DashboardAdminIndexRoute: typeof DashboardAdminIndexRoute
+  DashboardAgentIndexRoute: typeof DashboardAgentIndexRoute
   DashboardCompetitionsIndexRoute: typeof DashboardCompetitionsIndexRoute
   DashboardPlayersIndexRoute: typeof DashboardPlayersIndexRoute
+  DashboardSuperAgentIndexRoute: typeof DashboardSuperAgentIndexRoute
   DashboardTeamsIndexRoute: typeof DashboardTeamsIndexRoute
   DashboardTicketsIndexRoute: typeof DashboardTicketsIndexRoute
+  DashboardWalletIndexRoute: typeof DashboardWalletIndexRoute
+  DashboardSuperAgentCompetitionsIndexRoute: typeof DashboardSuperAgentCompetitionsIndexRoute
+  DashboardSuperAgentPlayersIndexRoute: typeof DashboardSuperAgentPlayersIndexRoute
+  DashboardSuperAgentTeamsIndexRoute: typeof DashboardSuperAgentTeamsIndexRoute
 }
 
 const DashboardRouteRouteChildren: DashboardRouteRouteChildren = {
+  DashboardAgentFixturesRoute: DashboardAgentFixturesRoute,
   DashboardAdminIndexRoute: DashboardAdminIndexRoute,
+  DashboardAgentIndexRoute: DashboardAgentIndexRoute,
   DashboardCompetitionsIndexRoute: DashboardCompetitionsIndexRoute,
   DashboardPlayersIndexRoute: DashboardPlayersIndexRoute,
+  DashboardSuperAgentIndexRoute: DashboardSuperAgentIndexRoute,
   DashboardTeamsIndexRoute: DashboardTeamsIndexRoute,
   DashboardTicketsIndexRoute: DashboardTicketsIndexRoute,
+  DashboardWalletIndexRoute: DashboardWalletIndexRoute,
+  DashboardSuperAgentCompetitionsIndexRoute:
+    DashboardSuperAgentCompetitionsIndexRoute,
+  DashboardSuperAgentPlayersIndexRoute: DashboardSuperAgentPlayersIndexRoute,
+  DashboardSuperAgentTeamsIndexRoute: DashboardSuperAgentTeamsIndexRoute,
 }
 
 const DashboardRouteRouteWithChildren = DashboardRouteRoute._addFileChildren(
@@ -284,10 +436,11 @@ export const routeTree = rootRouteImport
   ._addFileTypes<FileRouteTypes>()
 
 import type { getRouter } from './router.tsx'
-import type { createStart } from '@tanstack/react-start'
+import type { startInstance } from './start.ts'
 declare module '@tanstack/react-start' {
   interface Register {
     ssr: true
     router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
   }
 }
