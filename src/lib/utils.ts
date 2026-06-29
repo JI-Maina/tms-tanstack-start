@@ -19,3 +19,11 @@ export function safeInternalPath(
   }
   return path
 }
+
+export function getPercent(total: number, stat: number) {
+  if (total === 0) {
+    return 0
+  }
+
+  return Math.round((stat / total) * 100)
+}

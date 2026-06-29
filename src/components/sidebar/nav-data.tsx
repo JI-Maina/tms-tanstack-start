@@ -1,5 +1,6 @@
 import {
   AudioLinesIcon,
+  CalendarIcon,
   GalleryVerticalEndIcon,
   GroupIcon,
   HomeIcon,
@@ -52,6 +53,12 @@ export const superAgentNavItems: NavItem[] = linkOptions([
     to: '/super-agent/competitions',
     label: 'Competitions',
     icon: TrophyIcon,
+    activeOptions: { exact: false },
+  },
+  {
+    to: '/super-agent/fixtures',
+    label: 'Fixtures',
+    icon: CalendarIcon,
     activeOptions: { exact: false },
   },
   {
